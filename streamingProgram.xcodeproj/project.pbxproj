@@ -11,6 +11,10 @@
 		F5870C5F20C1D046001BC7FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5870C5E20C1D046001BC7FF /* ViewController.swift */; };
 		F5870C6220C1D046001BC7FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5870C6020C1D046001BC7FF /* Main.storyboard */; };
 		F5870C6420C1D047001BC7FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5870C6320C1D047001BC7FF /* Assets.xcassets */; };
+		F5870C6E20C1DA1C001BC7FF /* SessionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5870C6D20C1DA1C001BC7FF /* SessionsTableViewController.swift */; };
+		F5870C7020C1DA91001BC7FF /* SessionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5870C6F20C1DA91001BC7FF /* SessionsTableViewCell.swift */; };
+		F5870C7220C1E47B001BC7FF /* DetailedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5870C7120C1E47B001BC7FF /* DetailedTableViewController.swift */; };
+		F5870C7420C1E894001BC7FF /* DetailedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5870C7320C1E894001BC7FF /* DetailedTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,6 +24,10 @@
 		F5870C6120C1D046001BC7FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F5870C6320C1D047001BC7FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5870C6520C1D047001BC7FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5870C6D20C1DA1C001BC7FF /* SessionsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsTableViewController.swift; sourceTree = "<group>"; };
+		F5870C6F20C1DA91001BC7FF /* SessionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsTableViewCell.swift; sourceTree = "<group>"; };
+		F5870C7120C1E47B001BC7FF /* DetailedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTableViewController.swift; sourceTree = "<group>"; };
+		F5870C7320C1E894001BC7FF /* DetailedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,6 +62,10 @@
 			children = (
 				F5870C5C20C1D046001BC7FF /* AppDelegate.swift */,
 				F5870C5E20C1D046001BC7FF /* ViewController.swift */,
+				F5870C6D20C1DA1C001BC7FF /* SessionsTableViewController.swift */,
+				F5870C7120C1E47B001BC7FF /* DetailedTableViewController.swift */,
+				F5870C6F20C1DA91001BC7FF /* SessionsTableViewCell.swift */,
+				F5870C7320C1E894001BC7FF /* DetailedTableViewCell.swift */,
 				F5870C6020C1D046001BC7FF /* Main.storyboard */,
 				F5870C6320C1D047001BC7FF /* Assets.xcassets */,
 				F5870C6520C1D047001BC7FF /* Info.plist */,
@@ -132,7 +144,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F5870C5F20C1D046001BC7FF /* ViewController.swift in Sources */,
+				F5870C7020C1DA91001BC7FF /* SessionsTableViewCell.swift in Sources */,
 				F5870C5D20C1D046001BC7FF /* AppDelegate.swift in Sources */,
+				F5870C7420C1E894001BC7FF /* DetailedTableViewCell.swift in Sources */,
+				F5870C7220C1E47B001BC7FF /* DetailedTableViewController.swift in Sources */,
+				F5870C6E20C1DA1C001BC7FF /* SessionsTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,7 +290,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AntonioGiaquinto.streamingProgram;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonio.wwdcWeekStreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -293,7 +309,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.AntonioGiaquinto.streamingProgram;
+				PRODUCT_BUNDLE_IDENTIFIER = com.antonio.wwdcWeekStreaming;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
