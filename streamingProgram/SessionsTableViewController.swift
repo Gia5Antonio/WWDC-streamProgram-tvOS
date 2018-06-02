@@ -11,8 +11,13 @@ import UIKit
 class SessionsTableViewController: UITableViewController {
 
     var timer: Timer?
+  var startEventsTimer: Timer?
+  var sessionTimer: Timer?
     var seconds = Int()
-    
+  var events: [Event] = []
+  var liveEvents: [Event] = []
+  var nextEvents: [Event] = []
+ 
     let formatter: DateFormatter = {
         let tmpFormatter = DateFormatter()
         tmpFormatter.dateFormat = "hh:mm a"
@@ -31,19 +36,48 @@ class SessionsTableViewController: UITableViewController {
         
         timeLabel.text = DataSource.shared.timeString
         navigationBar?.addSubview(timeLabel)
-        
-        runTimer()
+      
+      events = loadEvents()
+      
+      checkEvents()
+      
+      runTimer()
+      
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
-        
+      
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
     func runTimer() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(checkLabel)), userInfo: nil, repeats: true)
+      timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(checkLabel)), userInfo: nil, repeats: true)
+      sessionTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(updateTableSessions), userInfo: nil, repeats: true)
+      startEventsTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateNextEventTimer), userInfo: nil, repeats: true)
     }
-    
+  
+  func checkEvents() {
+    let todayDate = NSDate()
+    let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
+    guard let dayWeek = calendar?.component(.weekday, from: todayDate as Date) else { return }
+    let day = dayWeek - 6
+    let hour = calendar?.component(.hour, from: todayDate as Date)
+    let minute = calendar?.component(.minute, from: todayDate as Date)
+    for event in events {
+      if event.tag != "Train" {
+        if(event.day == day && event.endingHour >= hour! ) {
+          if(event.endingHour == hour!){
+            if(event.endingMinute >= minute!) {
+              liveEvents.append(event)
+            }
+          } else {
+            nextEvents.append(event)
+          }
+        }
+      }
+    }
+  }
+  
     @objc func checkLabel() {
         let dateFormatter = DateFormatter()
         dateFormatter.timeStyle = .medium
@@ -51,7 +85,23 @@ class SessionsTableViewController: UITableViewController {
         timeLabel.text = DataSource.shared.timeString
         seconds += 1
     }
-    
+  
+  @objc func updateTableSessions() {
+    liveEvents = []
+    nextEvents = []
+    checkEvents()
+    tableView.reloadData()
+  }
+  
+  @objc func updateNextEventTimer() {
+    let todayDate = NSDate()
+    let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
+    guard let dayWeek = calendar?.component(.weekday, from: todayDate as Date) else { return }
+    let day = dayWeek - 6
+    let hour = calendar?.component(.hour, from: todayDate as Date)
+    let minute = calendar?.component(.minute, from: todayDate as Date)
+  }
+  
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -70,10 +120,10 @@ class SessionsTableViewController: UITableViewController {
         switch section {
         case 0:
             debugPrint("LIVE NOW")
-            return 5
+            return liveEvents.count
         case 1:
             debugPrint("UP NEXT")
-            return 5
+            return nextEvents.count
         default:
             return 0
         }
@@ -91,7 +141,8 @@ class SessionsTableViewController: UITableViewController {
             return " "
         }
     }
-    
+  
+  
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Configure the cell...
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SessionsTableViewCell else {
@@ -102,6 +153,17 @@ class SessionsTableViewController: UITableViewController {
         }
         cell.layer.cornerRadius = cell.frame.height / 4
         cell.layer.masksToBounds = true
+      
+      switch indexPath.section {
+      case 0:
+        cell.topicLabel.text = liveEvents[indexPath.row].name
+        cell.labTimerLabel.text = liveEvents[indexPath.row].location
+      case 1:
+        cell.topicLabel.text = nextEvents[indexPath.row].name
+        
+      default:
+        break
+      }
         return cell
     }
     
