@@ -10,6 +10,10 @@ import UIKit
 
 class DetailedTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var timerLabel: UILabel!
+    @IBOutlet weak var responsibleLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UITextView!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

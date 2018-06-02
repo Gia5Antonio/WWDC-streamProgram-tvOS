@@ -23,7 +23,7 @@ class DetailedTableViewController: UITableViewController {
             let secondFrame = CGRect(x: navigationBar.frame.width/1.3, y: 0, width: navigationBar.frame.width/2, height: navigationBar.frame.height)
             
             let titleLabel = UILabel(frame: firstFrame)
-            titleLabel.text = "Apple Academy Dub Dub Week"
+            titleLabel.text = "Apple Academy WWDC Week"
             
             let dateLabel = UILabel(frame: secondFrame)
             dateLabel.text = "\(Calendar.current.weekdaySymbols[weekday-1]), \(date) \(Calendar.current.shortMonthSymbols[month-1])"
