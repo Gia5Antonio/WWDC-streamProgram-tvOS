@@ -92,10 +92,13 @@ class DetailedTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "detailedCell", for: indexPath) as? DetailedTableViewCell else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "detailedCell", for: indexPath)
+            cell.layer.cornerRadius = cell.frame.height / 4
+            cell.layer.masksToBounds = true
             return cell
         }
         // Configure the cell...
-
+        cell.layer.cornerRadius = cell.frame.height / 4
+        cell.layer.masksToBounds = true
         return cell
     }
     
@@ -145,4 +148,13 @@ class DetailedTableViewController: UITableViewController {
     }
     */
 
+}
+
+extension UITableView {
+    func scrollToBottom() {
+        let rows = self.numberOfRows(inSection: 0)
+        
+        let indexPath = IndexPath(row: rows - 1, section: 0)
+        self.scrollToRow(at: indexPath, at: .top, animated: true)
+    }
 }

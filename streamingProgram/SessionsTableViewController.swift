@@ -9,7 +9,7 @@
 import UIKit
 
 class SessionsTableViewController: UITableViewController {
-    
+
     var timer: Timer?
     var seconds = Int()
     
@@ -19,14 +19,26 @@ class SessionsTableViewController: UITableViewController {
         return tmpFormatter
     }()
     
+    let timeLabel = UILabel()
+
+    let dateFormatter = DateFormatter().string(from: Date() as Date)
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        let navigationBar = self.navigationController?.navigationBar
+        let firstFrame = CGRect(x: 0, y: 0, width: (navigationBar?.frame.width)!/2, height: (navigationBar?.frame.height)!)
+        timeLabel.frame = firstFrame
+        
+        timeLabel.text = DataSource.shared.timeString
+        navigationBar?.addSubview(timeLabel)
+        
         runTimer()
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
     
     func runTimer() {
@@ -34,18 +46,10 @@ class SessionsTableViewController: UITableViewController {
     }
     
     @objc func checkLabel() {
-        debugPrint("Timer")
-        if let navigationBar = self.navigationController?.navigationBar {
-            let firstFrame = CGRect(x: 0, y: 0, width: navigationBar.frame.width/2, height: navigationBar.frame.height)
-            let timeLabel = UILabel(frame: firstFrame)
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.timeStyle = .medium
-            let timeString = dateFormatter.string(from: Date() as Date)
-            
-            timeLabel.text = String(timeString)
-            navigationBar.addSubview(timeLabel)
-        }
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeStyle = .medium
+        DataSource.shared.timeString = dateFormatter.string(from: Date() as Date)
+        timeLabel.text = DataSource.shared.timeString
         seconds += 1
     }
     
@@ -89,22 +93,16 @@ class SessionsTableViewController: UITableViewController {
         }
     }
     
-    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Configure the cell...
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? SessionsTableViewCell else {
             let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+            cell.layer.cornerRadius = cell.frame.height / 4
+            cell.layer.masksToBounds = true
             return cell
         }
-        
-        //        switch indexPath.section {
-        //        case 0:
-        //            cell.learningGoalsLabel?.text = code[indexPath.row]
-        //        case 1:
-        //            cell.learningGoalsLabel?.text = business[indexPath.row]
-        //        default:
-        //            cell.learningGoalsLabel.text = "error"
-        //        }
+        cell.layer.cornerRadius = cell.frame.height / 4
+        cell.layer.masksToBounds = true
         return cell
     }
     

@@ -15,6 +15,7 @@
 		F5870C7020C1DA91001BC7FF /* SessionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5870C6F20C1DA91001BC7FF /* SessionsTableViewCell.swift */; };
 		F5870C7220C1E47B001BC7FF /* DetailedTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5870C7120C1E47B001BC7FF /* DetailedTableViewController.swift */; };
 		F5870C7420C1E894001BC7FF /* DetailedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5870C7320C1E894001BC7FF /* DetailedTableViewCell.swift */; };
+		F5870C7620C27972001BC7FF /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5870C7520C27972001BC7FF /* DataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		F5870C6F20C1DA91001BC7FF /* SessionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionsTableViewCell.swift; sourceTree = "<group>"; };
 		F5870C7120C1E47B001BC7FF /* DetailedTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTableViewController.swift; sourceTree = "<group>"; };
 		F5870C7320C1E894001BC7FF /* DetailedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedTableViewCell.swift; sourceTree = "<group>"; };
+		F5870C7520C27972001BC7FF /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 			children = (
 				F5870C5C20C1D046001BC7FF /* AppDelegate.swift */,
 				F5870C5E20C1D046001BC7FF /* ViewController.swift */,
+				F5870C7520C27972001BC7FF /* DataSource.swift */,
 				F5870C6D20C1DA1C001BC7FF /* SessionsTableViewController.swift */,
 				F5870C7120C1E47B001BC7FF /* DetailedTableViewController.swift */,
 				F5870C6F20C1DA91001BC7FF /* SessionsTableViewCell.swift */,
@@ -145,6 +148,7 @@
 			files = (
 				F5870C5F20C1D046001BC7FF /* ViewController.swift in Sources */,
 				F5870C7020C1DA91001BC7FF /* SessionsTableViewCell.swift in Sources */,
+				F5870C7620C27972001BC7FF /* DataSource.swift in Sources */,
 				F5870C5D20C1D046001BC7FF /* AppDelegate.swift in Sources */,
 				F5870C7420C1E894001BC7FF /* DetailedTableViewCell.swift in Sources */,
 				F5870C7220C1E47B001BC7FF /* DetailedTableViewController.swift in Sources */,
