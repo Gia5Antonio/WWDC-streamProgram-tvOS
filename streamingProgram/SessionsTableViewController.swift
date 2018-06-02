@@ -26,7 +26,7 @@ class SessionsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let navigationBar = self.navigationController?.navigationBar
-        let firstFrame = CGRect(x: 0, y: 0, width: (navigationBar?.frame.width)!/2, height: (navigationBar?.frame.height)!)
+        let firstFrame = CGRect(x: (navigationBar?.frame.width)!/7, y: 0, width: (navigationBar?.frame.width)!/2, height: (navigationBar?.frame.height)!)
         timeLabel.frame = firstFrame
         
         timeLabel.text = DataSource.shared.timeString
@@ -38,7 +38,6 @@ class SessionsTableViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
     }
     
     func runTimer() {
