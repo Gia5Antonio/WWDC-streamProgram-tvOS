@@ -10,11 +10,11 @@ import UIKit
 
 class SessionsTableViewController: UITableViewController {
 
-    var timer: Timer?
+    var labelTimer: Timer?
   var startEventsTimer: Timer?
   var sessionTimer: Timer?
     var seconds = Int()
-  var events: [Event] = []
+  var dailyEvents: [Event] = []
   var liveEvents: [Event] = []
   var nextEvents: [Event] = []
  
@@ -37,11 +37,11 @@ class SessionsTableViewController: UITableViewController {
         timeLabel.text = DataSource.shared.timeString
         navigationBar?.addSubview(timeLabel)
       
-      events = loadEvents()
+      loadDailyEvents()
       
-      checkEvents()
+      checkLiveNextEvents()
       
-      runTimer()
+      runTimers()
       
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -50,30 +50,50 @@ class SessionsTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
     
-    func runTimer() {
-      timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(checkLabel)), userInfo: nil, repeats: true)
-      sessionTimer = Timer.scheduledTimer(timeInterval: 10, target: self, selector: #selector(updateTableSessions), userInfo: nil, repeats: true)
-      startEventsTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(updateNextEventTimer), userInfo: nil, repeats: true)
+    func runTimers() {
+      labelTimer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(checkLabel)), userInfo: nil, repeats: true)
     }
   
-  func checkEvents() {
+  func loadDailyEvents() {
+    let events = loadEvents()
+    
     let todayDate = NSDate()
     let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
     guard let dayWeek = calendar?.component(.weekday, from: todayDate as Date) else { return }
-    let day = dayWeek - 6
-    let hour = calendar?.component(.hour, from: todayDate as Date)
-    let minute = calendar?.component(.minute, from: todayDate as Date)
-    for event in events {
-      if event.tag != "Train" {
-        if(event.day == day && event.endingHour >= hour! ) {
-          if(event.endingHour == hour!){
-            if(event.endingMinute >= minute!) {
-              liveEvents.append(event)
+    let day = dayWeek - 2
+    let weekOfYear = calendar?.component(.weekOfYear, from: todayDate as Date)
+    if(weekOfYear == 23 ) {
+      let hour = calendar?.component(.hour, from: todayDate as Date)
+      let minute = calendar?.component(.minute, from: todayDate as Date)
+      for event in events {
+        if(event.tag != "Train") {
+          if(event.day == day && event.endingHour >= hour! ) {
+            if(event.endingHour == hour!){
+              if(event.endingMinute >= minute!) {
+                dailyEvents.append(event)
+              }
+            } else {
+              dailyEvents.append(event)
             }
-          } else {
-            nextEvents.append(event)
           }
         }
+      }
+    }
+  }
+  
+  func checkLiveNextEvents() {
+    let todayDate = NSDate()
+    let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
+    let hour = calendar?.component(.hour, from: todayDate as Date)
+    let minute = calendar?.component(.minute, from: todayDate as Date)
+    
+    for event in dailyEvents {
+      if(event.startingHour == hour) {
+        if(event.startingMinute == minute! ||  event.startingMinute < minute!) {
+          liveEvents.append(event)
+        }
+      } else {
+        nextEvents.append(event)
       }
     }
   }
@@ -89,17 +109,8 @@ class SessionsTableViewController: UITableViewController {
   @objc func updateTableSessions() {
     liveEvents = []
     nextEvents = []
-    checkEvents()
+    checkLiveNextEvents()
     tableView.reloadData()
-  }
-  
-  @objc func updateNextEventTimer() {
-    let todayDate = NSDate()
-    let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
-    guard let dayWeek = calendar?.component(.weekday, from: todayDate as Date) else { return }
-    let day = dayWeek - 6
-    let hour = calendar?.component(.hour, from: todayDate as Date)
-    let minute = calendar?.component(.minute, from: todayDate as Date)
   }
   
     override func didReceiveMemoryWarning() {
@@ -116,13 +127,10 @@ class SessionsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        debugPrint("Number of Times")
         switch section {
         case 0:
-            debugPrint("LIVE NOW")
             return liveEvents.count
         case 1:
-            debugPrint("UP NEXT")
             return nextEvents.count
         default:
             return 0
@@ -160,56 +168,9 @@ class SessionsTableViewController: UITableViewController {
         cell.labTimerLabel.text = liveEvents[indexPath.row].location
       case 1:
         cell.topicLabel.text = nextEvents[indexPath.row].name
-        
       default:
         break
       }
         return cell
     }
-    
-    
-    /*
-     // Override to support conditional editing of the table view.
-     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the specified item to be editable.
-     return true
-     }
-     */
-    
-    /*
-     // Override to support editing the table view.
-     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-     if editingStyle == .delete {
-     // Delete the row from the data source
-     tableView.deleteRows(at: [indexPath], with: .fade)
-     } else if editingStyle == .insert {
-     // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-     }
-     }
-     */
-    
-    /*
-     // Override to support rearranging the table view.
-     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-     
-     }
-     */
-    
-    /*
-     // Override to support conditional rearranging of the table view.
-     override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-     // Return false if you do not want the item to be re-orderable.
-     return true
-     }
-     */
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
 }

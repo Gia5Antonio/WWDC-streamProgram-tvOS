@@ -90,3 +90,4 @@ func loadEvents()->[Event] {
 //    let hour = calendar?.component(.hour, from: todayDate as Date)
 //    let minute = calendar?.component(.minute, from: todayDate as Date)
 //}
+

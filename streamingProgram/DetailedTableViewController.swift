@@ -69,7 +69,7 @@ class DetailedTableViewController: UITableViewController {
     }
     
     func runTimerMovSti() {
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(runTimer)), userInfo: nil, repeats: true)
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self,   selector: (#selector(runTimers)), userInfo: nil, repeats: true)
     }
     
     @objc func runTimer() {
