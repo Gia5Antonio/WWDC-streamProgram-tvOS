@@ -25,13 +25,14 @@ class SessionsTableViewController: UITableViewController {
     }()
     
     let timeLabel = UILabel()
-
     let dateFormatter = DateFormatter().string(from: Date() as Date)
 
     override func viewDidLoad() {
         super.viewDidLoad()
         let navigationBar = self.navigationController?.navigationBar
         let firstFrame = CGRect(x: (navigationBar?.frame.width)!/7, y: 0, width: (navigationBar?.frame.width)!/2, height: (navigationBar?.frame.height)!)
+        
+        timeLabel.textColor = .white
         timeLabel.frame = firstFrame
         
         timeLabel.text = DataSource.shared.timeString
@@ -125,6 +126,11 @@ class SessionsTableViewController: UITableViewController {
         return 2
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0;//Choose your custom row height
+    }
+    
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         switch section {
@@ -140,10 +146,8 @@ class SessionsTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0:
-            debugPrint("LIVE NOW")
             return "LIVE NOW"
         case 1:
-            debugPrint("UP NEXT")
             return "UP NEXT"
         default:
             return " "
