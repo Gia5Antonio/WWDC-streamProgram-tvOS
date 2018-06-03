@@ -10,8 +10,8 @@ import UIKit
 
 class SessionsTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var topicLabel: UILabel!
     @IBOutlet weak var labTimerLabel: UILabel!
+    @IBOutlet weak var topicTextView: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
