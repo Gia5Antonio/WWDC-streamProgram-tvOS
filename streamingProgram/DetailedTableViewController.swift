@@ -45,7 +45,7 @@ class DetailedTableViewController: UITableViewController {
         }
         
 //        tableView.scroll()
-        scroll()
+//        scroll()
     }
     
     override func didReceiveMemoryWarning() {
