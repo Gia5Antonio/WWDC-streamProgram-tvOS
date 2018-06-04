@@ -12,7 +12,8 @@ class SessionsTableViewCell: UITableViewCell {
   
   @IBOutlet weak var roomLabel: UILabel!
   @IBOutlet weak var countdownLabel: UILabel!
-  @IBOutlet weak var topicTextView: UITextView!
+  @IBOutlet weak var topicLabel: UILabel!
+  
   
   override func awakeFromNib() {
     super.awakeFromNib()

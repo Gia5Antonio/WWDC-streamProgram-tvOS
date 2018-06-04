@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1B938E3820C2F66400B2F83D /* Event.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B938E3720C2F66400B2F83D /* Event.swift */; };
 		F5870C5D20C1D046001BC7FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5870C5C20C1D046001BC7FF /* AppDelegate.swift */; };
-		F5870C5F20C1D046001BC7FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5870C5E20C1D046001BC7FF /* ViewController.swift */; };
 		F5870C6220C1D046001BC7FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5870C6020C1D046001BC7FF /* Main.storyboard */; };
 		F5870C6420C1D047001BC7FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5870C6320C1D047001BC7FF /* Assets.xcassets */; };
 		F5870C6E20C1DA1C001BC7FF /* SessionsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5870C6D20C1DA1C001BC7FF /* SessionsTableViewController.swift */; };
@@ -23,7 +22,6 @@
 		1B938E3720C2F66400B2F83D /* Event.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Event.swift; sourceTree = "<group>"; };
 		F5870C5920C1D046001BC7FF /* streamingProgram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = streamingProgram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5870C5C20C1D046001BC7FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F5870C5E20C1D046001BC7FF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F5870C6120C1D046001BC7FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F5870C6320C1D047001BC7FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5870C6520C1D047001BC7FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -45,6 +43,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1B20EF4B20C57A330083AC84 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				F5870C7120C1E47B001BC7FF /* DetailedTableViewController.swift */,
+				F5870C6D20C1DA1C001BC7FF /* SessionsTableViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1B20EF4C20C57A6D0083AC84 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1B938E3720C2F66400B2F83D /* Event.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1B20EF4E20C57A920083AC84 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				F5870C7320C1E894001BC7FF /* DetailedTableViewCell.swift */,
+				F5870C6F20C1DA91001BC7FF /* SessionsTableViewCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		F5870C5020C1D046001BC7FF = {
 			isa = PBXGroup;
 			children = (
@@ -65,13 +89,10 @@
 			isa = PBXGroup;
 			children = (
 				F5870C5C20C1D046001BC7FF /* AppDelegate.swift */,
-				F5870C5E20C1D046001BC7FF /* ViewController.swift */,
 				F5870C7520C27972001BC7FF /* DataSource.swift */,
-				1B938E3720C2F66400B2F83D /* Event.swift */,
-				F5870C6D20C1DA1C001BC7FF /* SessionsTableViewController.swift */,
-				F5870C7120C1E47B001BC7FF /* DetailedTableViewController.swift */,
-				F5870C6F20C1DA91001BC7FF /* SessionsTableViewCell.swift */,
-				F5870C7320C1E894001BC7FF /* DetailedTableViewCell.swift */,
+				1B20EF4B20C57A330083AC84 /* Controllers */,
+				1B20EF4C20C57A6D0083AC84 /* Models */,
+				1B20EF4E20C57A920083AC84 /* Views */,
 				F5870C6020C1D046001BC7FF /* Main.storyboard */,
 				F5870C6320C1D047001BC7FF /* Assets.xcassets */,
 				F5870C6520C1D047001BC7FF /* Info.plist */,
@@ -150,7 +171,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				1B938E3820C2F66400B2F83D /* Event.swift in Sources */,
-				F5870C5F20C1D046001BC7FF /* ViewController.swift in Sources */,
 				F5870C7020C1DA91001BC7FF /* SessionsTableViewCell.swift in Sources */,
 				F5870C7620C27972001BC7FF /* DataSource.swift in Sources */,
 				F5870C5D20C1D046001BC7FF /* AppDelegate.swift in Sources */,

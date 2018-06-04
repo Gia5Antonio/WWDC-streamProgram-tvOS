@@ -155,9 +155,9 @@ class SessionsTableViewController: UITableViewController {
     return 2
   }
   
-  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    return 100.0;//Choose your custom row height
-  }
+//  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//    return 100.0;//Choose your custom row height
+//  }
   
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -197,10 +197,10 @@ class SessionsTableViewController: UITableViewController {
     
     switch indexPath.section {
     case 0:
-      cell.topicTextView.text = liveEvents[indexPath.row].name
+      cell.topicLabel.text = liveEvents[indexPath.row].name
       cell.roomLabel.text = liveEvents[indexPath.row].location
     case 1:
-      cell.topicTextView.text = nextEvents[indexPath.row].name
+      cell.topicLabel.text = nextEvents[indexPath.row].name
       cell.roomLabel.text = nextEvents[indexPath.row].location
       if nextEvents[indexPath.row].startingMinute == 0 {
         cell.countdownLabel.text = "\(nextEvents[indexPath.row].startingHour):00"
