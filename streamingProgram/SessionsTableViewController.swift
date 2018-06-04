@@ -87,10 +87,11 @@ class SessionsTableViewController: UITableViewController {
     let calendar = NSCalendar(calendarIdentifier: NSCalendar.Identifier.gregorian)
     let hour = calendar?.component(.hour, from: todayDate as Date)
     let minute = calendar?.component(.minute, from: todayDate as Date)
-    
     for event in dailyEvents {
-      if(event.startingHour == hour) {
-        if(event.startingMinute == minute! ||  event.startingMinute < minute!) {
+      if(event.startingHour <= hour!) {
+        if(event.startingMinute <= minute! &&  event.startingHour == hour!) {
+          liveEvents.append(event)
+        } else{
           liveEvents.append(event)
         }
       } else {
@@ -98,6 +99,7 @@ class SessionsTableViewController: UITableViewController {
       }
     }
   }
+
   
     @objc func checkLabel() {
         let dateFormatter = DateFormatter()
@@ -168,10 +170,10 @@ class SessionsTableViewController: UITableViewController {
       
       switch indexPath.section {
       case 0:
-        cell.topicLabel.text = liveEvents[indexPath.row].name
+        cell.topicTextView.text = liveEvents[indexPath.row].name
         cell.labTimerLabel.text = liveEvents[indexPath.row].location
       case 1:
-        cell.topicLabel.text = nextEvents[indexPath.row].name
+        cell.topicTextView.text = nextEvents[indexPath.row].name
       default:
         break
       }
