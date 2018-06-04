@@ -9,19 +9,17 @@
 import UIKit
 
 class SessionsTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var labTimerLabel: UILabel!
-    @IBOutlet weak var topicTextView: UITextView!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-
+  
+  @IBOutlet weak var roomLabel: UILabel!
+  @IBOutlet weak var countdownLabel: UILabel!
+  @IBOutlet weak var topicTextView: UITextView!
+  
+  override func awakeFromNib() {
+    super.awakeFromNib()
+  }
+  
+  override func setSelected(_ selected: Bool, animated: Bool) {
+    super.setSelected(selected, animated: animated)
+  }
+  
 }
