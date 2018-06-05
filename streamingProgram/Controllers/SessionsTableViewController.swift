@@ -125,12 +125,15 @@ class SessionsTableViewController: UITableViewController {
       switch indexPath.section {
       case 0:
         print("LIVE SESSIONS")
-        let startedHour = hour! - liveEvents[indexPath.row].startingHour
+        let start = (liveEvents[indexPath.row].startingHour * 60) + liveEvents[indexPath.row].startingHour
+        let current = (hour! * 60) + minute!
+        
+        let startedTime = current - start
+        let startedHour = Int(startedTime / 60)
         if startedHour == 0 {
-          let startedMinute = minute! - liveEvents[indexPath.row].startingMinute
-          cell.countdownLabel.text = "From \(startedMinute)m"
+          cell.countdownLabel.text = "From \(startedTime)m"
         } else {
-          let startedMinute = minute! - liveEvents[indexPath.row].startingMinute
+          let startedMinute = startedTime - (startedHour * 60)
           cell.countdownLabel.text = "From \(startedHour)h \(startedMinute)m"
         }
       case 1:
@@ -141,6 +144,7 @@ class SessionsTableViewController: UITableViewController {
         let difference = startTime - currentTime
         if difference < 60 {
           cell.countdownLabel.text = "Start in \(difference)m"
+          cell.countdownLabel.textColor = .red
         }
       default:
         break
@@ -155,9 +159,9 @@ class SessionsTableViewController: UITableViewController {
     return 2
   }
   
-//  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//    return 100.0;//Choose your custom row height
-//  }
+  override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    return 88.0;//Choose your custom row height
+  }
   
   
   override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
