@@ -125,7 +125,7 @@ class SessionsTableViewController: UITableViewController {
       switch indexPath.section {
       case 0:
         print("LIVE SESSIONS")
-        let start = (liveEvents[indexPath.row].startingHour * 60) + liveEvents[indexPath.row].startingHour
+        let start = (liveEvents[indexPath.row].startingHour * 60) + liveEvents[indexPath.row].startingMinute
         let current = (hour! * 60) + minute!
         
         let startedTime = current - start
@@ -145,6 +145,8 @@ class SessionsTableViewController: UITableViewController {
         if difference < 60 {
           cell.countdownLabel.text = "Start in \(difference)m"
           cell.countdownLabel.textColor = .red
+        } else {
+          cell.countdownLabel.textColor = UIColor(red: 127.0 / 255.0, green: 127.0 / 255.0, blue: 127.0 / 255.0, alpha: 1)
         }
       default:
         break

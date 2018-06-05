@@ -151,12 +151,9 @@ class DetailedTableViewController: UITableViewController {
         cell.responsibleLabel.text = "Destination: \(trainNames[train.day])"
         if train.startingHour < 10 {
           cell.descriptionLabel.text = "Meeting time at Welcome Desk \(train.startingHour):0\(train.startingMinute)"
-        } else {
-          cell.descriptionLabel.text = "Meeting time at Welcome Desk \(train.startingHour):\(train.startingMinute)"
-        }
-        if train.endingMinute < 10 {
           cell.timerLabel.text = "\(train.endingHour):0\(train.endingMinute)"
         } else {
+          cell.descriptionLabel.text = "Meeting time at Welcome Desk \(train.startingHour):\(train.startingMinute)"
           cell.timerLabel.text = "\(train.endingHour):\(train.endingMinute)"
         }
     case 1:
